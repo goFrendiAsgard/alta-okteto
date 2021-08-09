@@ -1,0 +1,29 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: guestbook
+  labels:
+    app: guestbook
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: guestbook
+  template:
+    metadata:
+      labels:
+        app: guestbook
+    spec:
+      containers:
+        - image: k8s.gcr.io/guestbook:v3
+          name: guestbook
+          resources:
+            limits:
+              memory: 200Mi
+              cpu: 1
+            requests:
+              memory: 100Mi
+              cpu: 100m
+          ports:
+            - containerPort: 3000
+              name: http-server

@@ -1,0 +1,32 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: redis-slave
+  labels:
+    app: redis
+    role: slave
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis
+      role: slave
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: slave
+    spec:
+      containers:
+        - name: redis-slave
+          image: k8s.gcr.io/redis-slave:v2
+          resources:
+            limits:
+              memory: 200Mi
+              cpu: 1
+            requests:
+              memory: 100Mi
+              cpu: 100m
+          ports:
+            - name: redis-server
+              containerPort: 6379

@@ -18,4 +18,5 @@
     - `kubectl get nodes`
 * Port forwarding
     - `kubectl port-forward service/guestbook 8080:3000` (kubectl port-forward `<service>` `<local-port>:<remote-port>`)
+* Delete: `kubectl delete -f manifest`
     
